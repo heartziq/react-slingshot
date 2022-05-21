@@ -19,6 +19,10 @@ jobs:
           command: |
             npm i
       - run: npm run lint
+      - save_cache:
+          key: "node_modules"
+          paths:
+            - ~/d1
   test:
     docker:
       - image: circleci/node:13.8.0
