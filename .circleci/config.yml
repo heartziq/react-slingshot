@@ -20,21 +20,23 @@ jobs:
             npm i
       - run: npm run lint
       - save_cache:
-          key: "node_modules"
+          key: node_modules
           paths:
-            - ~/d1
+            - ~/node_modules
   test:
     docker:
       - image: circleci/node:13.8.0
     steps:
+      - checkout
       - restore_cache:
-          key: "node_modules"
+          key: node_modules
       - run: npm i
       - run: npm run test
   analyse:
     docker:
       - image: circleci/node:13.8.0
     steps:
+      - checkout
       - run: echo "running analyse"
 
 # Invoke jobs via workflows
